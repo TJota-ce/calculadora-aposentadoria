@@ -3,7 +3,7 @@ import { calculateRetirement, formatCurrency, formatNumberInput } from './utils/
 import { SimulationData, SimulationResult } from './types';
 import { InputField } from './components/InputField';
 import { InfoSection } from './components/InfoSection';
-import { TrendingUp, Calculator as CalculatorIcon } from 'lucide-react';
+import { TrendingUp, Calculator as CalculatorIcon, Trash2 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState<SimulationData>({
@@ -44,6 +44,20 @@ const App: React.FC = () => {
         document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
+  };
+
+  const handleClear = () => {
+    setFormData({
+      monthlyIncome: 0,
+      currentInvestments: 0,
+      targetPatrimony: 0,
+      investPercentage: 0,
+      currentAge: 0,
+      retirementAge: 0,
+      annualReturn: 0,
+      monthlySpendingRetirement: 0,
+    });
+    setResults(null);
   };
 
   return (
@@ -114,7 +128,7 @@ const App: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <InputField
                     label="Quantos % da renda você investe?"
-                    value={formData.investPercentage}
+                    value={formData.investPercentage === 0 ? '' : formData.investPercentage}
                     onChange={(v) => handleInputChange('investPercentage', v)}
                     suffix="%"
                   />
@@ -126,13 +140,13 @@ const App: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <InputField
                     label="Qual sua idade atual?"
-                    value={formData.currentAge}
+                    value={formData.currentAge === 0 ? '' : formData.currentAge}
                     onChange={(v) => handleInputChange('currentAge', v)}
                     suffix="anos"
                   />
                   <InputField
                     label="Com quantos anos deseja se aposentar?"
-                    value={formData.retirementAge}
+                    value={formData.retirementAge === 0 ? '' : formData.retirementAge}
                     onChange={(v) => handleInputChange('retirementAge', v)}
                     suffix="anos"
                   />
@@ -141,7 +155,7 @@ const App: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                    <InputField
                     label="Rentabilidade anual projetada?"
-                    value={formData.annualReturn}
+                    value={formData.annualReturn === 0 ? '' : formData.annualReturn}
                     onChange={(v) => handleInputChange('annualReturn', v)}
                     suffix="%"
                     step="0.1"
@@ -156,10 +170,17 @@ const App: React.FC = () => {
                   />
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-4 flex gap-3">
+                  <button
+                    onClick={handleClear}
+                    className="flex-1 bg-white border-2 border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 font-bold py-3.5 px-4 rounded-lg shadow-sm transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
+                  >
+                    <Trash2 className="w-5 h-5 mr-2" />
+                    Limpar
+                  </button>
                   <button
                     onClick={handleCalculate}
-                    className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-md transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
+                    className="flex-[2] bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-md transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
                   >
                     Calcular
                   </button>
