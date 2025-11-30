@@ -38,12 +38,10 @@ const App: React.FC = () => {
     const calculated = calculateRetirement(formData);
     setResults(calculated);
     
-    // Smooth scroll to results on mobile/tablet
-    if (window.innerWidth < 1280) {
-      setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
+    // Always scroll to results
+    setTimeout(() => {
+      document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const handleClear = () => {
@@ -85,13 +83,13 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
         
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+        {/* Main Content Vertical Stack */}
+        <div className="space-y-8">
           
-          {/* Left Column: Inputs */}
-          <div className="xl:col-span-4 space-y-6">
+          {/* Inputs Section */}
+          <div className="w-full space-y-6">
             <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
               <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                 <h3 className="font-semibold text-slate-800 flex items-center">
@@ -189,18 +187,11 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Results */}
-          <div className="xl:col-span-8" id="results-section">
+          {/* Results Section */}
+          <div className="w-full" id="results-section">
             
-            {!results ? (
-              // Empty state is hidden on mobile (below XL) so it doesn't take up space
-              <div className="hidden xl:flex h-full flex-col items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center text-slate-400 min-h-[400px]">
-                <CalculatorIcon className="w-16 h-16 mb-4 opacity-20" />
-                <h3 className="text-xl font-medium text-slate-500">Aguardando cálculo</h3>
-                <p className="max-w-xs mx-auto mt-2">Preencha os campos ao lado e clique em Calcular para ver sua simulação.</p>
-              </div>
-            ) : (
-              <div className="space-y-6">
+            {results && (
+              <div className="space-y-6 animate-in fade-in slide-in-from-top-4 duration-500">
                 
                 {/* Result Box Container */}
                 <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-8">
