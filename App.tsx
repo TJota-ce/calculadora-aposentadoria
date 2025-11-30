@@ -38,10 +38,10 @@ const App: React.FC = () => {
     const calculated = calculateRetirement(formData);
     setResults(calculated);
     
-    // Optional: smooth scroll to results on mobile
-    if (window.innerWidth < 1024) {
+    // Smooth scroll to results on mobile/tablet
+    if (window.innerWidth < 1280) {
       setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
   };
@@ -88,10 +88,10 @@ const App: React.FC = () => {
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
         
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
           
           {/* Left Column: Inputs */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="xl:col-span-4 space-y-6">
             <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
               <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
                 <h3 className="font-semibold text-slate-800 flex items-center">
@@ -172,17 +172,17 @@ const App: React.FC = () => {
 
                 <div className="pt-4 flex gap-3">
                   <button
+                    onClick={handleCalculate}
+                    className="flex-[2] bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-md transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
+                  >
+                    Calcular
+                  </button>
+                  <button
                     onClick={handleClear}
                     className="flex-1 bg-white border-2 border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 font-bold py-3.5 px-4 rounded-lg shadow-sm transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
                   >
                     <Trash2 className="w-5 h-5 mr-2" />
                     Limpar
-                  </button>
-                  <button
-                    onClick={handleCalculate}
-                    className="flex-[2] bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-4 rounded-lg shadow-md transition-all duration-200 transform active:scale-95 flex justify-center items-center text-lg"
-                  >
-                    Calcular
                   </button>
                 </div>
               </div>
@@ -190,10 +190,11 @@ const App: React.FC = () => {
           </div>
 
           {/* Right Column: Results */}
-          <div className="lg:col-span-8" id="results-section">
+          <div className="xl:col-span-8" id="results-section">
             
             {!results ? (
-              <div className="h-full flex flex-col items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center text-slate-400 min-h-[400px]">
+              // Empty state is hidden on mobile (below XL) so it doesn't take up space
+              <div className="hidden xl:flex h-full flex-col items-center justify-center bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center text-slate-400 min-h-[400px]">
                 <CalculatorIcon className="w-16 h-16 mb-4 opacity-20" />
                 <h3 className="text-xl font-medium text-slate-500">Aguardando cálculo</h3>
                 <p className="max-w-xs mx-auto mt-2">Preencha os campos ao lado e clique em Calcular para ver sua simulação.</p>
