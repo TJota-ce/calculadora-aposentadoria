@@ -220,7 +220,7 @@ const App: React.FC = () => {
                     {/* Card 1 */}
                     <div className="bg-white border border-slate-200 rounded-lg p-4 text-center shadow-sm flex flex-col items-center justify-center min-h-[140px]">
                       <h4 className="font-bold text-slate-900 text-sm mb-2">Você se aposentará com</h4>
-                      <div className="text-xl font-bold text-slate-800 mb-2 break-words w-full">{formatCurrency(results.totalAccumulated)}</div>
+                      <div className="text-lg font-bold text-slate-800 mb-2 break-words w-full tracking-tight">{formatCurrency(results.totalAccumulated)}</div>
                       <p className="text-xs text-slate-500 leading-tight">
                         Aportando {formatCurrency(results.monthlyContribution)} por {Math.floor(results.monthsToRetirement / 12)} anos.
                       </p>
@@ -229,7 +229,7 @@ const App: React.FC = () => {
                     {/* Card 2 */}
                     <div className="bg-white border border-slate-200 rounded-lg p-4 text-center shadow-sm flex flex-col items-center justify-center min-h-[140px]">
                       <h4 className="font-bold text-slate-900 text-sm mb-2">Deixará de herança</h4>
-                      <div className="text-xl font-bold text-red-600 mb-2 break-words w-full">{formatCurrency(results.heritage)}</div>
+                      <div className="text-lg font-bold text-red-600 mb-2 break-words w-full tracking-tight">{formatCurrency(results.heritage)}</div>
                       <p className="text-xs text-slate-500 leading-tight">
                         Baseado numa expectativa média de 72 anos.
                       </p>
@@ -238,7 +238,7 @@ const App: React.FC = () => {
                     {/* Card 3 */}
                     <div className="bg-white border border-slate-200 rounded-lg p-4 text-center shadow-sm flex flex-col items-center justify-center min-h-[140px]">
                       <h4 className="font-bold text-slate-900 text-sm mb-2">Poderá gastar por mês</h4>
-                      <div className="text-xl font-bold text-slate-800 mb-2 break-words w-full">{formatCurrency(results.sustainableMonthlySpending)}</div>
+                      <div className="text-lg font-bold text-slate-800 mb-2 break-words w-full tracking-tight">{formatCurrency(results.sustainableMonthlySpending)}</div>
                       <p className="text-xs text-slate-500 leading-tight">
                         Para seu dinheiro nunca acabar.
                       </p>
@@ -249,7 +249,7 @@ const App: React.FC = () => {
                       <h4 className="font-bold text-slate-900 text-sm mb-2">
                         {results.isGoalMet ? 'Você passou da sua meta' : 'Faltam para sua meta'}
                       </h4>
-                      <div className={`text-xl font-bold mb-2 break-words w-full ${results.isGoalMet ? 'text-emerald-600' : 'text-amber-600'}`}>
+                      <div className={`text-lg font-bold mb-2 break-words w-full tracking-tight ${results.isGoalMet ? 'text-emerald-600' : 'text-amber-600'}`}>
                         {formatCurrency(Math.abs(results.surplus))}
                       </div>
                       <p className={`text-xs font-medium ${results.isGoalMet ? 'text-emerald-600' : 'text-amber-600'}`}>
