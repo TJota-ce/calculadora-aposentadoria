@@ -83,7 +83,7 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
+      <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 -mt-16 pb-12">
         
         {/* Main Content Vertical Stack */}
         <div className="space-y-8">
@@ -266,6 +266,13 @@ const App: React.FC = () => {
         
         {/* Info / Education Section */}
         <InfoSection />
+
+        {/* Footer */}
+        <div className="mt-12 border-t border-slate-200 pt-6 text-center">
+           <p className="text-xs text-slate-400">
+             © 2025 IJota Financeira. Todos os direitos reservados.
+           </p>
+        </div>
 
       </main>
     </div>
